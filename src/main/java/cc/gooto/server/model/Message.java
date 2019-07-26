@@ -1,11 +1,8 @@
 package cc.gooto.server.model;
 
-public class Message {
+import java.util.Map;
 
-	/**
-	 * 消息类型
-	 */
-	private String type = "RemoteControl";
+public class Message {
 
 	/**
 	 * 源地址
@@ -20,14 +17,15 @@ public class Message {
 	/**
 	 * 内容
 	 */
-	private String content;
+	private Map<String, Object> content;
 
-	public String getType() {
-		return type;
+	public Message() {
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public Message(String destinationAddress, Map<String, Object> content) {
+		super();
+		this.destinationAddress = destinationAddress;
+		this.content = content;
 	}
 
 	public String getSourcesAddress() {
@@ -46,11 +44,11 @@ public class Message {
 		this.destinationAddress = destinationAddress;
 	}
 
-	public String getContent() {
+	public Map<String, Object> getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
+	public void setContent(Map<String, Object> content) {
 		this.content = content;
 	}
 }

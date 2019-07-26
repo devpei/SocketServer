@@ -37,13 +37,13 @@ public class StartSocket {
 	}
 
 	public static void sockets(String[] args) {
-		Set<String> keySet = SocketHandle.sockets.keySet();
+		Set<String> keySet = SocketHandle.clients.keySet();
 		if (keySet.size() < 1) {
 			System.out.println("null");
 		} else {
 			for (String string : keySet) {
-				System.out.println(string + "\t" + SocketHandle.getSocket(string).isConnected() + "\t"
-						+ SocketHandle.getSocket(string).isClosed());
+				System.out.println(string + "\t" + SocketHandle.getClient(string).getSocket().isConnected() + "\t"
+						+ SocketHandle.getClient(string).getSocket().isClosed());
 			}
 		}
 	}
