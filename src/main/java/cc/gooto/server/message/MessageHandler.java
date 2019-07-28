@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+
 import cc.gooto.server.model.Message;
 import cc.gooto.server.socket.SocketHandle;
 
@@ -42,6 +44,7 @@ public interface MessageHandler {
 	 */
 	default void messageAnalysis(String ip, Message message) {
 		// 说明是上报信息消息，无需转发
+		System.out.println("<==收到消息：" + JSON.toJSONString(message));
 		if ("0.0.0.0".equals(message.getDestinationAddress())) {
 			// 字段clientType表示客户端类型
 			String clientType = (String) message.getContent().get("clientType");
