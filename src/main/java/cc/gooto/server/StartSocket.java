@@ -11,7 +11,8 @@ public class StartSocket {
 	public static void main(String[] args) {
 
 		new Thread(new Server(), "main:server").start();
-
+		
+		//自定义命令窗口
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			String nextLine = sc.nextLine();
