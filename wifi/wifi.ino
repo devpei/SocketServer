@@ -69,13 +69,27 @@ bool connectServer(String ip, int port) {
   }
   return serverConnectStatus;
 }
+//#{"content":{"clientType":"Devices"},"destinationAddress":"0.0.0.0"}$
+//向服务器发送消息
+void sendMessage(String msg) {
+  if (sendInstruction("AT+CIPSENDEX=80", ">")) {
+    mySerial.println(msg + "\0");
+  }
+}
 
 //发送指令，返回指令效果
 bool sendInstruction(String instruction) {
+  return sendInstruction(instruction, "");
+}
+
+//发送具有特殊返回标识的指令，返回指令效果
+bool sendInstruction(String instruction, String okMark) {
   mySerial.println(instruction);
   int currentTime = millis();
   while (true) {
-    if (readData().startsWith("OK")) {
+    if (okMark.length() < 1 && readData().startsWith("OK")) {
+      return true;
+    } else if (okMark.length() > 1 && readData().startsWith(okMark)) {
       return true;
     }
     //最多读取3s内数据
